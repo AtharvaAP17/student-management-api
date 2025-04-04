@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git 'https://github.com/AtharvaAP17/student-management-api.git'
+                git branch: 'main', url: 'https://github.com/AtharvaAP17/student-management-api.git'
             }
         }
 
