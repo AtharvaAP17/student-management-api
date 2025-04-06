@@ -67,14 +67,17 @@ pipeline {
 
         stage('Deploy via Ansible') {
             steps {
-                dir('ansible-deploy') {
-                    sh '''
-                        source ../venv/bin/activate
-                        ansible-playbook -i localhost, -c local deploy.yml --become --extra-vars "ansible_become_password=$BECOME_PASS"
-                    '''
+                withCredentials([string(credentialsId: 'BECOME_PASS', variable: 'BECOME_PASS')]) {
+                    dir('ansible-deploy') {
+                        sh '''
+                            source ../venv/bin/activate
+                            ansible-playbook -i localhost, -c local deploy.yml --become --extra-vars "ansible_become_password=$BECOME_PASS"
+                        '''
+                    }
                 }
             }
         }
+
     }
 
     post {
