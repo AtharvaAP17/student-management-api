@@ -29,7 +29,7 @@ pipeline {
 
         stage('Code Quality - SonarQube') {
             steps {
-                withSonarQubeEnv("${SONARQUBE_SERVER}") {
+                withSonarQubeEnv('SonarQube EC2'){
                     sh "${MAVEN_HOME}/bin/mvn sonar:sonar"
                 }
             }
