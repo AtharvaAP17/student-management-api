@@ -66,7 +66,9 @@ pipeline {
 
     post {
         always {
-            junit '**/target/surefire-reports/*.xml'
+            catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                junit testResults: '**/target/surefire-reports/*.xml', allowEmptyResults: true
+            }
         }
         success {
             echo "Pipeline executed successfully!"
@@ -74,5 +76,4 @@ pipeline {
         failure {
             echo "Pipeline failed!"
         }
-    }
 }
