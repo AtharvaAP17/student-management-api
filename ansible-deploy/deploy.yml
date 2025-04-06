@@ -1,0 +1,31 @@
+- name: Deploy Student Management API locally with Docker
+  hosts: localhost
+  become: yes
+  vars:
+    app_image: atharvapailwan7/student-api-cicd:latest
+    app_container_name: student-api
+    app_port: 8080
+
+  tasks:
+    - name: Check if the OS is macOS
+      ansible.builtin.set_fact:
+        is_macos: "{{ ansible_facts['os_family'] == 'Darwin' }}"
+
+    - name: Skip Docker installation on macOS
+      debug:
+        msg: "Skipping Docker install - running on macOS"
+      when: is_macos
+
+    - name: Pull Docker image
+      community.docker.docker_image:
+        name: atharvapailwan7/student-api
+        source: pull
+
+    - name: Ensure container is running
+      community.docker.docker_container:
+        name: student-api
+        image: atharvapailwan7/student-api
+        state: started
+        restart_policy: always
+        ports:
+          - "8085:8080"
