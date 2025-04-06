@@ -29,11 +29,19 @@ pipeline {
 
         stage('Code Quality - SonarQube') {
             steps {
-                withSonarQubeEnv('SonarQube'){
-                    sh "${MAVEN_HOME}/bin/mvn sonar:sonar"
+                withSonarQubeEnv('SonarQube') {
+                    withCredentials([string(credentialsId: 'SONAR_TOKEN', variable: 'SONAR_TOKEN')]) {
+                        sh """
+                            mvn sonar:sonar \
+                            -Dsonar.projectKey=com.example:student-api \
+                            -Dsonar.host.url=http://your-sonarqube-url:9000 \
+                            -Dsonar.login=$SONAR_TOKEN
+                        """
+                    }
                 }
             }
         }
+}
 
         stage('Build Docker Image') {
             steps {
