@@ -69,7 +69,7 @@ pipeline {
             steps {
                 dir('ansible-deploy') {
                     sh """
-                        . ../venv/bin/activate
+                        #. ../venv/bin/activate
                         ansible-playbook -i inventory deploy.yml --ask-become-pass
                     """
                 }
