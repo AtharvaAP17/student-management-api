@@ -30,7 +30,7 @@ pipeline {
         stage('Code Quality - SonarQube') {
             steps {
                 withSonarQubeEnv('SonarQube') {
-                    withCredentials([string(credentialsId: 'SONAR_TOKEN', variable: 'SONAR_TOKEN')]) {
+                    withCredentials([string(credentialsId: 'sonarqube-token', variable: 'SONAR_TOKEN')]) {
                         script {
                             def mvnHome = tool 'Maven 3.9.9'
                             withEnv(["PATH+MAVEN=${mvnHome}/bin"]) {
