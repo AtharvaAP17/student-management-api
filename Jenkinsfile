@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    triggers {
+        githubPush()
+    }
+
     environment {
         MAVEN_HOME = tool 'Maven 3.9.9'
         SONARQUBE_SERVER = 'SonarQube EC2'
