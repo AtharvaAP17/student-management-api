@@ -125,7 +125,6 @@ GitHub (Push) → Jenkins (Build + Test + SonarQube Analysis) → Docker Image B
 - Integrated industry-standard tools (Jenkins, SonarQube, Docker, Ansible) into one professional workflow.
 - Gained hands-on experience running SonarQube on cloud (AWS EC2).
 
----
 
 ---
 
