@@ -127,12 +127,6 @@ GitHub (Push) → Jenkins (Build + Test + SonarQube Analysis) → Docker Image B
 
 ---
 
-##  Acknowledgements
-
-- MSc. in Software Design (Cloud Native Computing) - TUS
-- Jenkins and SonarQube Official Documentation
-- Spring Boot Community
-
 ---
 
 ##  Author
