@@ -96,7 +96,7 @@ CI/CD Pipeline runs end-to-end successfully with every push to GitHub.
 
 ---
 
-## 🛠️ Deployment Architecture
+##  Deployment Architecture
 
 
 GitHub (Push) → Jenkins (Build + Test + SonarQube Analysis) → Docker Image Build → Ansible → Deployment
